@@ -1,0 +1,61 @@
+Two lines of a properly formated pega file are shown below.  Spaces 
+should not appear anywhere in the line.
+
+DC:(A|B|C|(D|E|F|[-(([/G|H|]))]A|C|)
+
+ER:([-A|]B|C|(D|E|F|G|H|A|C|)
+
+{Bram: No predicate symbols here: pure atomic variables! So, something like Cube(a) won't work: it'll interpret the ( ) as cuts. But you can do longer strings for a single atomic variable like BAH or A24}
+
+The first two chars (DC and ER) represent the rule that is being used in 
+the particular step, and that rule will be displayed at the top of the 
+screen during playback.  Valid rules are:
+DC - double cut
+IT - Iteration
+IN - Insertion
+ER - Erasure
+
+{Bram: Every line is expected to have a rule identifier. So: you cannot have a graph to which you do nothing (as in a 0-step proof where the premise is the same as the conclusion)}
+
+Then you have your graph description.  Each atom must be terminated with 
+a pipe, and no spaces are allowed. The parentheses are cuts. 
+
+{Bram: Actually, if an atomic variable is followed by an open or close parenthesis, it need not be followed by a pipe.}
+
+The braces followed by operators are modifier commands that tell the program 
+which elements the rule is being applied to.  The modifiers are applied 
+to the graph that is contained within the braces.  So in the second 
+example above, the [-A|] means that during this step, the A will be 
+removed from the graph.  Here are the valid modifiers: 
+
+{Bram: an atomic variable need not be followed by a pipe when followed by a brace (open or close)}
+                                                                               
+{Bram: every line is expected to have some modifier command}
+
+  [-  - the stuff coming after is to be 
+removed
+  [/  - the following elements should be treated as normal.  (this 
+removes previous modifiers)
+  [+  - the items are being 
+added
+  [.  - the elements are used as citation for the rule that's being used 
+(these elements will be highlighted).   This is useful for iteration to 
+see which elements are being iterated.
+
+For example, to remove a double cut, you would want to do something like:
+DC:[-(([/This|Is|not|removed|]))]
+not that the [/ protects the atoms inside the double cut. 
+
+{Bram: when adding a double cut, use a similar construction: so in general, the [/  is meant to indicate stuff that's already there, i.e. it neither gets added or removed}
+
+Please note that this is not a proof checker, it is up to you to make 
+sure that 1) the rules are correctly applied and 2) that the result of each line becomes the starting point of the line that immediately follows it.
+
+--------------------------
+
+Bram, hope this clears everything up... please play with it and let me 
+know if there's any changes you'd like to see or any bugs that I can 
+fix... I made it fairly modular, so I don't think new features would be 
+any real problem.
+
+Andy

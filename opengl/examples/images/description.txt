@@ -1,0 +1,10 @@
+;; -*- Mode: Text; rcs-header: "$Header: /hope/cam1/hope.1/compound/9/LISPopengl-examples/RCS/images:description.txt,v 1.2.2.1 2003/02/26 21:56:36 davef Exp $" -*-
+
+;; Copyright (c) 1987--2003 Xanalys LLC. All rights reserved.
+
+Description of images
+
+up-arrow.bmp      - up arrow
+down-arrow.bmp    - down arrow
+up-disabled.bmp   - disabled up arrow
+down-disabled.bmp - disabled down arrow
